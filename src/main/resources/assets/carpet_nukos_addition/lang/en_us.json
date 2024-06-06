@@ -1,0 +1,11 @@
+{
+	
+	"carpet.category.nukos": "nukos",
+	
+	"carpet.rule.anvilItemCostRollupAlgorithm.name": "anvilItemUseCostRollupAlgorithm",
+	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "Customize the algorithm for changing the cumulative penalty of an anvil on an item after using an anvil on an item.",
+	
+	"carpet.rule.tickFreezeWhenNoPlayers.name": "tickFreezeWhenNoPlayers",
+	"carpet.rule.tickFreezeWhenNoPlayers.desc": "Automatically call /tick freeze when no players are online to prevent world updates. No use when in single-player."
+	
+}

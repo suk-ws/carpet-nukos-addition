@@ -1,0 +1,11 @@
+{
+	
+	"carpet.category.nukos": "nukos",
+	
+	"carpet.rule.anvilItemCostRollupAlgorithm.name": "物品的铁砧累加惩罚算法",
+	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "自定义对物品使用铁砧后，物品的铁砧累加惩罚变动的算法。",
+	
+	"carpet.rule.tickFreezeWhenNoPlayers.name": "无玩家时停止Tick",
+	"carpet.rule.tickFreezeWhenNoPlayers.desc": "自动在没有玩家在线时调用 /tick freeze 以使世界暂停更新。在单人模式中无效。"
+	
+}

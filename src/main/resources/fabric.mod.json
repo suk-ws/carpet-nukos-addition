@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "carpet_nukos_addition",
+	"version": "${version}",
+	"name": "Carpet Nukos Addition",
+	"description": "A carpet extension/addition provides features that used in Nukoland server.",
+	"authors": [
+		"A.C.Sukazyo Eyre"
+	],
+	"contact": {
+		"homepage": "https://github.com/suk-ws/carpet-nukos-addition",
+		"sources": "https://github.com/suk-ws/carpet-nukos-addition"
+	},
+	"license": "Apache 2.0",
+	"icon": "assets/carpet_nukos_addition/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cc.sukazyo.nukos.carpet.ModCarpetNukos"
+		]
+	},
+	"mixins": [
+		"carpet_nukos_addition.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.10",
+		"minecraft": "~1.20",
+		"java": ">=21",
+		"carpet": "*"
+	},
+	"suggests": {
+	}
+}
