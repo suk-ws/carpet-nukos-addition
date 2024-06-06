@@ -17,7 +17,8 @@ public class AutoTickFreeze {
 		
 		if (!CarpetAdditionNukos.SERVER.isDedicated() && CarpetNukosSettings.tickFreezeWhenNoPlayers)
 			ModCarpetNukos.LOGGER.warn("Your server is not dedicated server, tickFreezeWhenNoPlayer will not work!");
-		checkStatus();
+		if (isEnabled())
+			checkStatus();
 		
 	}
 	

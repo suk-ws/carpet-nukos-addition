@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.utils.Translations;
 import cc.sukazyo.nukos.carpet.ticks.AutoTickFreeze;
+import cc.sukazyo.nukos.carpet.ticks.TickStatusClientSyncThread;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -14,6 +15,7 @@ public class CarpetAdditionNukos implements CarpetExtension {
 	
 	public static final String CATEGORY_KEY = "nukos";
 	public static MinecraftServer SERVER;
+	private static TickStatusClientSyncThread tickStatusClientSyncThread;
 	
 	public static void init () {
 		CarpetServer.manageExtension(new CarpetAdditionNukos());
@@ -28,6 +30,8 @@ public class CarpetAdditionNukos implements CarpetExtension {
 	@Override
 	public void onServerLoaded (MinecraftServer server) {
 		SERVER = server;
+		tickStatusClientSyncThread = new TickStatusClientSyncThread(server);
+		tickStatusClientSyncThread.start();
 	}
 	
 	@Override
@@ -38,6 +42,12 @@ public class CarpetAdditionNukos implements CarpetExtension {
 				AutoTickFreeze.onConfigChanged((boolean)changedRule.value());
 			}
 		});
+	}
+	
+	@Override
+	public void onServerClosed (MinecraftServer server) {
+		tickStatusClientSyncThread.interrupt();
+		tickStatusClientSyncThread = null;
 	}
 	
 	@Override
