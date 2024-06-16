@@ -3,9 +3,21 @@
 	"carpet.category.nukos": "nukos",
 	
 	"carpet.rule.anvilItemCostRollupAlgorithm.name": "anvilItemUseCostRollupAlgorithm",
-	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "Customize the algorithm for changing the cumulative penalty of an anvil on an item after using an anvil on an item.",
+	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "Customize the algorithm for changing the cumulative penalty of an anvil on an item after using an anvil on an item. This is independent with the anvil algorithm settings.",
 	
 	"carpet.rule.tickFreezeWhenNoPlayers.name": "tickFreezeWhenNoPlayers",
-	"carpet.rule.tickFreezeWhenNoPlayers.desc": "Automatically call /tick freeze when no players are online to prevent world updates. No use when in single-player."
+	"carpet.rule.tickFreezeWhenNoPlayers.desc": "Automatically call /tick freeze when no players are online to prevent world updates. No use when in single-player.",
+	
+	"carpet.rule.anvilUseRenameCost.name": "anvilUseRenameCost",
+	"carpet.rule.anvilUseRenameCost.desc": "Does anvil should have 1 leve cost when renaming things. Only affects when using mod anvil algorithms.",
+	
+	"carpet.rule.anvilUseItemCost.name": "anvilUseItemCost",
+	"carpet.rule.anvilUseItemCost.desc": "Does anvil should adds the item-use-cost to the total costs. Only affects when using mod anvil algorithms. Independents with anvil item-use-cost rollup algorithm.",
+	
+	"carpet.rule.anvilTooExpensiveLimit.name": "anvilTooExpensiveLimit",
+	"carpet.rule.anvilTooExpensiveLimit.desc": "The maximum cost of an anvil, controls on how much costs the anvil should report TOO EXPENSIVE. Only affects when using mod anvil algorithms.",
+	
+	"carpet.rule.anvilAlgorithm.name": "anvilAlgorithm",
+	"carpet.rule.anvilAlgorithm.desc": "Customize the algorithm that calculates the result and costs for a anvil. Independents with item's anvil-use-cost rollup algorithm."
 	
 }

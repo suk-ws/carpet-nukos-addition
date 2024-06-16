@@ -3,9 +3,21 @@
 	"carpet.category.nukos": "nukos",
 	
 	"carpet.rule.anvilItemCostRollupAlgorithm.name": "物品的铁砧累加惩罚算法",
-	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "自定义对物品使用铁砧后，物品的铁砧累加惩罚变动的算法。",
+	"carpet.rule.anvilItemCostRollupAlgorithm.desc": "自定义对物品使用铁砧后，物品的铁砧累加惩罚变动的算法。此设置与铁砧算法相独立。",
 	
 	"carpet.rule.tickFreezeWhenNoPlayers.name": "无玩家时停止Tick",
-	"carpet.rule.tickFreezeWhenNoPlayers.desc": "自动在没有玩家在线时调用 /tick freeze 以使世界暂停更新。在单人模式中无效。"
+	"carpet.rule.tickFreezeWhenNoPlayers.desc": "自动在没有玩家在线时调用 /tick freeze 以使世界暂停更新。在单人模式中无效。",
+	
+	"carpet.rule.anvilUseRenameCost.name": "铁砧使用重命名物品消费",
+	"carpet.rule.anvilUseRenameCost.desc": "是否应该让铁砧重命名物品时消费一级经验。仅在使用本 mod 的铁砧算法时生效。",
+	
+	"carpet.rule.anvilUseItemCost.name": "铁砧使用物品的累加惩罚",
+	"carpet.rule.anvilUseItemCost.desc": "是否将物品的累加惩罚添加到本次使用的总消耗中。仅在使用本 mod 的铁砧算法时生效。与物品使用后的惩罚累加无关。",
+	
+	"carpet.rule.anvilTooExpensiveLimit.name": "铁砧“太贵”上限",
+	"carpet.rule.anvilTooExpensiveLimit.desc": "控制铁砧应在等级消耗达到多少时报告“过于昂贵”。仅在使用本 mod 的铁砧算法时生效。",
+	
+	"carpet.rule.anvilAlgorithm.name": "铁砧算法",
+	"carpet.rule.anvilAlgorithm.desc": "自定义铁砧的输出物品和物品/经验消耗算法。与物品累加惩罚算法独立。"
 	
 }

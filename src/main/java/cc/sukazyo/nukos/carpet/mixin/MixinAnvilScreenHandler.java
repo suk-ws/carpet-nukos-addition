@@ -2,14 +2,17 @@ package cc.sukazyo.nukos.carpet.mixin;
 
 import cc.sukazyo.nukos.carpet.CarpetNukosSettings;
 import cc.sukazyo.nukos.carpet.ModCarpetNukos;
-import cc.sukazyo.nukos.carpet.anvils.AnvilItemCostRollupAlgorithm;
+import cc.sukazyo.nukos.carpet.anvils.*;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.*;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class MixinAnvilScreenHandler
@@ -29,12 +32,23 @@ public abstract class MixinAnvilScreenHandler
 		super(type, syncId, playerInventory, context);
 	}
 	
-//	@Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
-//	public void inject_updateResult(CallbackInfo ci) {
-//		if (false) {
-//			ci.cancel();
-//		}
-//	}
+	@Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
+	public void inject_updateResult(CallbackInfo ci) {
+		AnvilContext context = new AnvilContext(
+				this.input.getStack(0), this.input.getStack(1),
+				this.newItemName,
+				this.player
+		);
+		AnvilAlgorithm algorithm = AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
+		Optional<AnvilResult> tryResult = algorithm.updateResult(context);
+		if (tryResult.isPresent()) {
+			AnvilResult result = tryResult.get();
+			this.output.setStack(0, result.output);
+			this.levelCost.set(result.levelCost);
+			this.repairItemUsage = result.ingotUsed;
+			ci.cancel();
+		}
+	}
 	
 	@Inject(method = "getNextCost", at = @At(value = "HEAD"), cancellable = true)
 	private static void getNextCost_inject (int cost, CallbackInfoReturnable<Integer> cir) {
@@ -45,9 +59,7 @@ public abstract class MixinAnvilScreenHandler
 			cir.setReturnValue(
 					((AnvilItemCostRollupAlgorithm.Customized)algorithm).getNextCost(cost)
 			);
-		} else if (algorithm instanceof AnvilItemCostRollupAlgorithm.Vanilla) {
-			// Nothing to do
-		} else {
+		} else if (!(algorithm instanceof AnvilItemCostRollupAlgorithm.Vanilla)) {
 			ModCarpetNukos.LOGGER.warn(
 					"Unknown next anvil item cost algorithm:{} : {}",
 					algorithm.getClass().getName(),

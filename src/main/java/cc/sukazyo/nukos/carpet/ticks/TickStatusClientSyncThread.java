@@ -24,7 +24,6 @@ public class TickStatusClientSyncThread extends Thread {
 	
 	@Override
 	public void run () {
-		//
 		while (true) {
 			ServerNetworkHandler.updateFrozenStateToConnectedPlayers(server);
 			try {

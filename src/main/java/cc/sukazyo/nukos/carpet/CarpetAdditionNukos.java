@@ -13,7 +13,12 @@ import java.util.Objects;
 
 public class CarpetAdditionNukos implements CarpetExtension {
 	
-	public static final String CATEGORY_KEY = "nukos";
+	public static class NukosCategoryKeys {
+		public static final String NUKOS = "nukos";
+		public static final String TICK = "tick";
+		public static final String ANVIL = "anvil";
+	}
+	
 	public static MinecraftServer SERVER;
 	private static TickStatusClientSyncThread tickStatusClientSyncThread;
 	
