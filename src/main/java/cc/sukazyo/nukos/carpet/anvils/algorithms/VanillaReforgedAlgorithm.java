@@ -3,14 +3,15 @@ package cc.sukazyo.nukos.carpet.anvils.algorithms;
 import cc.sukazyo.nukos.carpet.CarpetNukosSettings;
 import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithm;
 import cc.sukazyo.nukos.carpet.anvils.AnvilContext;
+import cc.sukazyo.nukos.carpet.anvils.AnvilInputContext;
 import cc.sukazyo.nukos.carpet.anvils.AnvilResult;
+import cc.sukazyo.nukos.carpet.utils.TextDecomposer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.AnvilScreenHandler;
-import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 
 import java.util.Map;
@@ -64,7 +65,7 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 	}
 	
 	@Override
-	public Optional<AnvilResult> updateResult (AnvilContext context) {
+	public Optional<AnvilResult> updateResult (AnvilInputContext context) {
 		
 		// directly fail when the main input has nothing
 		if (context.input1.isEmpty()) { return Optional.of(AnvilResult.empty()); }
@@ -171,7 +172,7 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 		} else if (!context.newItemName.equals(context.input1.getName().getString())) {
 			if (CarpetNukosSettings.anvilUseRenameCost)
 				expCostBase += 1;
-			itemOutput.setCustomName(Text.literal(context.newItemName));
+			itemOutput.setCustomName(TextDecomposer.toFormattedComponent(context.newItemName));
 			actions.renamed = true;
 		}
 		
@@ -222,6 +223,17 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 				.setLevelCost(levelCost)
 				.setIngotUsed(input2UsedCount));
 		
+	}
+	
+	@Override
+	public Optional<Boolean> canTakeout (AnvilContext context) {
+		if (context.output.isEmpty())
+			return Optional.of(false);
+		if (context.player.getAbilities().creativeMode)
+			return Optional.of(true);
+		if (context.player.experienceLevel >= context.levelCost)
+			return Optional.of(true);
+		return Optional.of(false);
 	}
 	
 }

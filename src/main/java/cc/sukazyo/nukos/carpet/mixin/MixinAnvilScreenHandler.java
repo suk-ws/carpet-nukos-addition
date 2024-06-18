@@ -3,6 +3,7 @@ package cc.sukazyo.nukos.carpet.mixin;
 import cc.sukazyo.nukos.carpet.CarpetNukosSettings;
 import cc.sukazyo.nukos.carpet.ModCarpetNukos;
 import cc.sukazyo.nukos.carpet.anvils.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.*;
 import org.jetbrains.annotations.Nullable;
@@ -32,9 +33,23 @@ public abstract class MixinAnvilScreenHandler
 		super(type, syncId, playerInventory, context);
 	}
 	
+	@Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
+	public void inject_canTakeOutput (PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
+		AnvilContext context = new AnvilContext(
+				this.input.getStack(0), this.input.getStack(1),
+				this.newItemName,
+				this.player,
+				this.output.getStack(0),
+				this.levelCost.get(), this.repairItemUsage
+		);
+		AnvilAlgorithm algorithm = AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
+		Optional<Boolean> tryResult = algorithm.canTakeout(context);
+		tryResult.ifPresent(cir::setReturnValue);
+	}
+	
 	@Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
 	public void inject_updateResult(CallbackInfo ci) {
-		AnvilContext context = new AnvilContext(
+		AnvilInputContext context = new AnvilInputContext(
 				this.input.getStack(0), this.input.getStack(1),
 				this.newItemName,
 				this.player
