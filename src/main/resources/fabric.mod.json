@@ -17,10 +17,17 @@
 	"entrypoints": {
 		"main": [
 			"cc.sukazyo.nukos.carpet.ModCarpetNukos"
+		],
+		"client": [
+			"cc.sukazyo.nukos.carpet.ModCarpetNukosClient"
 		]
 	},
 	"mixins": [
-		"carpet_nukos_addition.mixins.json"
+		"carpet_nukos_addition.mixins.json",
+		{
+			"config": "carpet_nukos_addition.client.mixins.json",
+			"environment": "client"
+		}
 	],
 	"depends": {
 		"fabricloader": ">=0.15.10",

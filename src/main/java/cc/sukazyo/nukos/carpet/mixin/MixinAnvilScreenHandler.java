@@ -33,6 +33,22 @@ public abstract class MixinAnvilScreenHandler
 		super(type, syncId, playerInventory, context);
 	}
 	
+	@Inject(method = "setNewItemName", at = @At("HEAD"), cancellable = true)
+	public void inject_setNewItemName (String newItemName, CallbackInfoReturnable<Boolean> cir) {
+		Optional<AnvilSetNewNameContext.ReturnedContext> result = CarpetNukosSettings.getCurrentAnvilAlgorithm().setNewName(
+				new AnvilSetNewNameContext(
+						newItemName,
+						this.newItemName,
+						this.getSlot(2),
+						(newName -> this.newItemName = newName)
+				)
+		);
+		result.ifPresent(ret -> {
+			this.updateResult();
+			cir.setReturnValue(ret.isSuccess());
+		});
+	}
+	
 	@Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
 	public void inject_canTakeOutput (PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
 		AnvilContext context = new AnvilContext(
@@ -42,8 +58,7 @@ public abstract class MixinAnvilScreenHandler
 				this.output.getStack(0),
 				this.levelCost.get(), this.repairItemUsage
 		);
-		AnvilAlgorithm algorithm = AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
-		Optional<Boolean> tryResult = algorithm.canTakeout(context);
+		Optional<Boolean> tryResult = CarpetNukosSettings.getCurrentAnvilAlgorithm().canTakeout(context);
 		tryResult.ifPresent(cir::setReturnValue);
 	}
 	
@@ -54,8 +69,7 @@ public abstract class MixinAnvilScreenHandler
 				this.newItemName,
 				this.player
 		);
-		AnvilAlgorithm algorithm = AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
-		Optional<AnvilResult> tryResult = algorithm.updateResult(context);
+		Optional<AnvilResult> tryResult = CarpetNukosSettings.getCurrentAnvilAlgorithm().updateResult(context);
 		if (tryResult.isPresent()) {
 			AnvilResult result = tryResult.get();
 			this.output.setStack(0, result.output);

@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "cc.sukazyo.nukos.carpet.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"MixinAnvilScreen"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

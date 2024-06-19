@@ -18,6 +18,9 @@
 	"carpet.rule.anvilTooExpensiveLimit.desc": "控制铁砧应在等级消耗达到多少时报告“过于昂贵”。仅在使用本 mod 的铁砧算法时生效。",
 	
 	"carpet.rule.anvilAlgorithm.name": "铁砧算法",
-	"carpet.rule.anvilAlgorithm.desc": "自定义铁砧的输出物品和物品/经验消耗算法。与物品累加惩罚算法独立。"
+	"carpet.rule.anvilAlgorithm.desc": "自定义铁砧的输出物品和物品/经验消耗算法。与物品累加惩罚算法独立。",
+	
+	"carpet.rule.anvilCustomNameSerializer.name": "铁砧重命名物品的文字序列化器",
+	"carpet.rule.anvilCustomNameSerializer.desc": "自定义铁砧重命名名称序列化器以支持更丰富的物品名称格式。可能仅在此 mod 在客户端安装后有效。仅在使用本 mod 的铁砧算法时生效。"
 	
 }

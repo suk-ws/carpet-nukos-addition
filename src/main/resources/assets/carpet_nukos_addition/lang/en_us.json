@@ -18,6 +18,9 @@
 	"carpet.rule.anvilTooExpensiveLimit.desc": "The maximum cost of an anvil, controls on how much costs the anvil should report TOO EXPENSIVE. Only affects when using mod anvil algorithms.",
 	
 	"carpet.rule.anvilAlgorithm.name": "anvilAlgorithm",
-	"carpet.rule.anvilAlgorithm.desc": "Customize the algorithm that calculates the result and costs for a anvil. Independents with item's anvil-use-cost rollup algorithm."
+	"carpet.rule.anvilAlgorithm.desc": "Customize the algorithm that calculates the result and costs for a anvil. Independents with item's anvil-use-cost rollup algorithm.",
+	
+	"carpet.rule.anvilCustomNameSerializer.name": "anvilCustomNameSerializer",
+	"carpet.rule.anvilCustomNameSerializer.desc": "Customize the serializer used for anvil renaming items. May available only on this mod installed on client. Only affects when using mod anvil algorithms."
 	
 }

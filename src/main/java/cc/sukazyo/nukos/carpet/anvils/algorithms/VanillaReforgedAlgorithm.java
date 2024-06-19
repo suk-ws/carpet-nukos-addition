@@ -1,11 +1,8 @@
 package cc.sukazyo.nukos.carpet.anvils.algorithms;
 
 import cc.sukazyo.nukos.carpet.CarpetNukosSettings;
-import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithm;
-import cc.sukazyo.nukos.carpet.anvils.AnvilContext;
-import cc.sukazyo.nukos.carpet.anvils.AnvilInputContext;
-import cc.sukazyo.nukos.carpet.anvils.AnvilResult;
-import cc.sukazyo.nukos.carpet.utils.TextDecomposer;
+import cc.sukazyo.nukos.carpet.anvils.*;
+import cc.sukazyo.nukos.carpet.text.anvil.AnvilTextHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.EnchantedBookItem;
@@ -15,6 +12,7 @@ import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.util.Util;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
@@ -169,10 +167,10 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 				actions.renamed = true;
 			}
 		// if set new custom name
-		} else if (!context.newItemName.equals(context.input1.getName().getString())) {
+		} else if (!AnvilTextHelper.itemIsOfName(context.input1, context.newItemName)) {
 			if (CarpetNukosSettings.anvilUseRenameCost)
 				expCostBase += 1;
-			itemOutput.setCustomName(TextDecomposer.toFormattedComponent(context.newItemName));
+			AnvilTextHelper.setNameToItem(itemOutput, context.newItemName);
 			actions.renamed = true;
 		}
 		
@@ -223,6 +221,40 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 				.setLevelCost(levelCost)
 				.setIngotUsed(input2UsedCount));
 		
+	}
+	
+	@Override
+	public Optional<AnvilSetNewNameContext.ReturnedContext> setNewName (AnvilSetNewNameContext context) {
+		
+		final String newName = AnvilTextHelper.stripInvalidChars(context.newItemName());
+		int MAX_NAME_LENGTH = 50;
+		if (AnvilTextHelper.textRealLength(newName) > MAX_NAME_LENGTH)
+			return Optional.of(new AnvilSetNewNameContext.ReturnedContext(false));
+		
+		if (!Objects.equals(newName, context.oldItemName())) {
+			
+			context.setOldItemName().accept(newName);
+			
+			if (context.slot().hasStack()) {
+				ItemStack itemStack = context.slot().getStack();
+				if (Util.isBlank(newName)) {
+					itemStack.removeCustomName();
+				} else {
+					AnvilTextHelper.setNameToItem(itemStack, newName);
+				}
+			}
+			
+			return Optional.of(new AnvilSetNewNameContext.ReturnedContext(true));
+			
+		} else {
+			return Optional.of(new AnvilSetNewNameContext.ReturnedContext(false));
+		}
+		
+	}
+	
+	@Override
+	public boolean isReforgedSetName () {
+		return true;
 	}
 	
 	@Override

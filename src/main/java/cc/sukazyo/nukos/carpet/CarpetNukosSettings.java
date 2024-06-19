@@ -2,9 +2,11 @@ package cc.sukazyo.nukos.carpet;
 
 import carpet.api.settings.Rule;
 import carpet.api.settings.RuleCategory;
+import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithm;
 import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithms;
 import cc.sukazyo.nukos.carpet.anvils.AnvilItemCostRollupAlgorithm;
 import cc.sukazyo.nukos.carpet.CarpetAdditionNukos.NukosCategoryKeys;
+import cc.sukazyo.nukos.carpet.text.anvil.MyAnvilTextHelpers;
 
 public class CarpetNukosSettings {
 	
@@ -23,6 +25,9 @@ public class CarpetNukosSettings {
 			validators = AnvilAlgorithms.Validator.class
 	)
 	public static String anvilAlgorithm = "vanilla";
+	public static AnvilAlgorithm getCurrentAnvilAlgorithm () {
+		return AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
+	}
 	
 	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.SURVIVAL, NukosCategoryKeys.ANVIL})
 	public static Boolean anvilUseRenameCost = true;
@@ -36,6 +41,14 @@ public class CarpetNukosSettings {
 			strict = false
 	)
 	public static int anvilTooExpensiveLimit = 40;
+	
+	@Rule(
+			categories = {NukosCategoryKeys.NUKOS, RuleCategory.SURVIVAL, NukosCategoryKeys.ANVIL},
+			options = {"vanilla", "escaped", "escape-and", "mini-message"},
+			strict = false,
+			validators = MyAnvilTextHelpers.Validator.class
+	)
+	public static String anvilCustomNameSerializer = "vanilla";
 	
 	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, NukosCategoryKeys.TICK})
 	public static Boolean tickFreezeWhenNoPlayers = false;

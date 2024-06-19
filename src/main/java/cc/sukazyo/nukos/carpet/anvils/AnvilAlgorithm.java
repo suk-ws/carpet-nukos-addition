@@ -4,8 +4,20 @@ import java.util.Optional;
 
 public interface AnvilAlgorithm {
 	
-	Optional<AnvilResult> updateResult (AnvilInputContext context);
+	default Optional<AnvilResult> updateResult (AnvilInputContext context) {
+		return Optional.empty();
+	}
 	
-	Optional<Boolean> canTakeout (AnvilContext context);
+	default Optional<Boolean> canTakeout (AnvilContext context) {
+		return Optional.empty();
+	}
+	
+	default Optional<AnvilSetNewNameContext.ReturnedContext> setNewName (AnvilSetNewNameContext context) {
+		return Optional.empty();
+	}
+	
+	default boolean isReforgedSetName () {
+		return false;
+	}
 	
 }
