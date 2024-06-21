@@ -15,6 +15,12 @@ repositories {
 		name "wsMcMods"
 		url "https://mvn.sukazyo.cc/mc-mods"
 	}
+	// for adventure platform api
+	maven {
+		name = "sonatype-oss-snapshots1"
+		url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+		mavenContent { snapshotsOnly() }
+	}
 }
 
 loom {
@@ -47,8 +53,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "carpet:fabric-carpet:${project.carpet_minecraft_version}-${project.carpet_core_version}"
 	
-	implementation "net.kyori:adventure-text-minimessage:4.17.0"
-	implementation "net.kyori:adventure-text-serializer-gson:4.17.0"
+	modImplementation include("net.kyori:adventure-platform-fabric:5.9.0")
 	
 }
 

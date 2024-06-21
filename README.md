@@ -8,7 +8,9 @@ server.
 ## Scheduled features list
 
 - [x] anvilItemCostRollupAlgorithm
-- [x] anvilCostAlgorithm
+- [x] anvilAlgorithm
+- [x] anvilCustomNameSerializer
+- [ ] anvilCustomNameMaxLength
 - [x] anvilUseItemCost
 - [x] anvilRenameCost -- only implements the on/off yet, and have bugs picking up when cost is 0
 - [x] anvilTooExpensiveLimit -- have bugs picking up
