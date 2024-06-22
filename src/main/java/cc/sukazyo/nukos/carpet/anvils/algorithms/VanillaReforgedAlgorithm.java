@@ -258,6 +258,11 @@ public class VanillaReforgedAlgorithm implements AnvilAlgorithm {
 	}
 	
 	@Override
+	public boolean isReforgedCostLimit () {
+		return true;
+	}
+	
+	@Override
 	public Optional<Boolean> canTakeout (AnvilContext context) {
 		if (context.output.isEmpty())
 			return Optional.of(false);

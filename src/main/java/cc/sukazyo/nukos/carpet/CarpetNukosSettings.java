@@ -37,7 +37,7 @@ public class CarpetNukosSettings {
 	
 	@Rule(
 			categories = {NukosCategoryKeys.NUKOS, RuleCategory.SURVIVAL, NukosCategoryKeys.ANVIL},
-			options = {"40", "255"},
+			options = {"40", Integer.MAX_VALUE + ""},
 			strict = false
 	)
 	public static int anvilTooExpensiveLimit = 40;

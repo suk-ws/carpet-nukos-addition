@@ -20,4 +20,8 @@ public interface AnvilAlgorithm {
 		return false;
 	}
 	
+	default boolean isReforgedCostLimit () {
+		return false;
+	}
+	
 }

@@ -3,7 +3,9 @@
 A carpet extension/addition provides features that are used in Nukoland
 server.
 
-**This mod is under WIP status.**
+There may still under WIP status.
+
+[Rules(zh_cn)](./docs/rules.zh.md)
 
 ## Scheduled features list
 
@@ -12,8 +14,10 @@ server.
 - [x] anvilCustomNameSerializer
 - [ ] anvilCustomNameMaxLength
 - [x] anvilUseItemCost
-- [x] anvilRenameCost -- only implements the on/off yet, and have bugs picking up when cost is 0
-- [x] anvilTooExpensiveLimit -- have bugs picking up
+- [x] anvilRenameCost -- only implements the on/off (1/0) yet
+- [x] anvilTooExpensiveLimit
+- [x] anvilCanRepairedUseIronBlock
+- [x] tickFreezeWhenNoPlayers
 - [ ] tickFreezeWhenNoPlayersUseDeepFreeze
 - [ ] petsPreventOwnerDamage
 - [ ] petsShowHealth
