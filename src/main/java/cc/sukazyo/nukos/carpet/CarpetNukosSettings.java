@@ -50,6 +50,9 @@ public class CarpetNukosSettings {
 	)
 	public static String anvilCustomNameSerializer = "vanilla";
 	
+	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.SURVIVAL, NukosCategoryKeys.ANVIL})
+	public static boolean anvilCanRepairUseIronBlock = false;
+	
 	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, NukosCategoryKeys.TICK})
 	public static Boolean tickFreezeWhenNoPlayers = false;
 	

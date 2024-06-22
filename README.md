@@ -16,7 +16,7 @@ There may still under WIP status.
 - [x] anvilUseItemCost
 - [x] anvilRenameCost -- only implements the on/off (1/0) yet
 - [x] anvilTooExpensiveLimit
-- [x] anvilCanRepairedUseIronBlock
+- [x] anvilCanRepairUseIronBlock
 - [x] tickFreezeWhenNoPlayers
 - [ ] tickFreezeWhenNoPlayersUseDeepFreeze
 - [ ] petsPreventOwnerDamage
