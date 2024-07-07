@@ -1,32 +1,49 @@
 plugins {
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.github.gmazzo.buildconfig' version '5.3.5'
 }
 
-version = project.mod_version
-group = project.maven_group
+static Closure mavenRepository (@DelegatesTo(MavenArtifactRepository.class) Closure closure) { closure }
+static Action<? extends PasswordCredentials> credentials (Action<? extends PasswordCredentials> action) { action }
+
+final var workshopCredentials = credentials { it ->
+	it.username = publishMvnRepoUsername
+	it.password = publishMvnRepoPassword
+}
+
+final var workshopMcMods = mavenRepository({
+	name 'wsMcMods'
+	url "https://mvn.sukazyo.cc/mc-mods"
+	credentials workshopCredentials
+})
+
+final var proj_group = predef_proj_group
+final var proj_package = "$predef_proj_group.$predef_proj_id"
+final var proj_version = predef_proj_version
+final var proj_name = predef_proj_name
+
+version = proj_version
+group = proj_group
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = proj_name
 }
 
 repositories {
-	maven {
-		name "wsMcMods"
-		url "https://mvn.sukazyo.cc/mc-mods"
-	}
+	maven workshopMcMods
 	// for adventure platform api
-	maven {
-		name = "sonatype-oss-snapshots1"
-		url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-		mavenContent { snapshotsOnly() }
-	}
+//	maven {
+//		name = "sonatype-oss-snapshots1"
+//		url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+//		mavenContent { snapshotsOnly() }
+//	}
 }
 
 loom {
 	splitEnvironmentSourceSets()
 	mods {
-		"${archives_base_name}" {
+		"$predef_proj_name" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -45,28 +62,36 @@ remapJar {
 dependencies {
 	
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	minecraft "com.mojang:minecraft:${predef_api_minecraft_version}"
+	mappings "net.fabricmc:yarn:${predef_api_yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${predef_api_loader_version}"
 	
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "carpet:fabric-carpet:${project.carpet_minecraft_version}-${project.carpet_core_version}"
+	// Fabric API. This is required by the adventure platform
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${predef_lib_fabric_version}"
+	modImplementation "carpet:fabric-carpet:${predef_lib_carpet_minecraft_version}-${predef_lib_carpet_core_version}"
 	
-	modImplementation include("net.kyori:adventure-platform-fabric:5.9.0")
+	modImplementation include("net.kyori:adventure-platform-fabric:$predef_lib_adventure_platform_version")
+	
+}
+
+buildConfig {
+	
+	packageName proj_package
+	
+	buildConfigField(String, 'MOD_VERSION', proj_version)
 	
 }
 
 processResources {
 	
-	inputs.property "version", project.version
+	inputs.property "version", proj_version
 	
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": proj_version
 	}
 	
 	filesMatching("*.properties") {
-		expand "version": project.version
+		expand "version": proj_version
 	}
 	
 }
@@ -86,24 +111,22 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${proj_name}"}
 	}
 }
 
 // configure the maven publication
-//publishing {
-//	publications {
-//		create("mavenJava", MavenPublication) {
-//			artifactId = project.archives_base_name
-//			from components.java
-//		}
-//	}
-//
-//	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-//	repositories {
-//		// Add repositories to publish to here.
-//		// Notice: This block does NOT have the same function as the block in the top level.
-//		// The repositories here will be used for publishing your artifact, not for
-//		// retrieving dependencies.
-//	}
-//}
+publishing {
+	
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = proj_name
+			from components.java
+		}
+	}
+	
+	repositories {
+		maven workshopMcMods
+	}
+	
+}
