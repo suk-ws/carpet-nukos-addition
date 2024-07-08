@@ -24,6 +24,12 @@
 	"carpet.rule.anvilCustomNameSerializer.desc": "自定义铁砧重命名名称序列化器以支持更丰富的物品名称格式。可能仅在此 mod 在客户端安装后有效。仅在使用本 mod 的铁砧算法时生效。",
 	
 	"carpet.rule.anvilCanRepairUseIronBlock.name": "铁块修复铁砧",
-	"carpet.rule.anvilCanRepairUseIronBlock.desc": "可以使用铁块右键一个破损的铁砧来修复它。"
+	"carpet.rule.anvilCanRepairUseIronBlock.desc": "可以使用铁块右键一个破损的铁砧来修复它。",
+	
+	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.name": "自动停止 tick 使用深度冻结",
+	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.desc": "为规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 使用深度冻结功能。",
+	
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.name": "自动停止 tick 应忽略的玩家",
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "在规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 里应忽略哪些玩家的在线。每个玩家名称应使用,区分，或者使用 * 来进行通配。"
 	
 }

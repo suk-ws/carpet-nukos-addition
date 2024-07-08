@@ -35,7 +35,9 @@ Legend: \
 | Iron Block Repair for Anvils              | ✅ 0.5.0 |
 | Anvil-Related Client Patches              | ✅ 0.4.2 |
 | Auto Freeze Ticking When No Players       | ✅ 0.1.0 |
-| Auto Freeze Ticking Use Deep Freeze       | ❌       |
+| Auto Freeze Ticking Use Deep Freeze       | ✅ 0.6.0 |
+| Ignore Players in Auto Tick Freeze        | ✅ 0.6.0 |
+| Ignore Players when Sleeping              | ❌       |
 | Tick Status Sync Patch for Carpet Clients | ✅ 0.1.1 |
 | Display Pet Health                        | ❌       |
 | Pet Friendly Fire Protection              | ❌       |

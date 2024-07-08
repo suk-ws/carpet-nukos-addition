@@ -14,6 +14,30 @@
 
 只会在 Dedicated Server （专用服务器，即通过 server.jar 等启动的没有自带客户端的独立服务器） 环境下生效。在单人游戏和开放局域网联机的单人游戏里不会生效。
 
+## tickFreezeWhenNoPlayersUseDeepFreeze
+
+> 本地化名称 : tickFreezeWhenNoPlayersUseDeepFreeze | 自动停止 tick 使用深度冻结 \
+> 分类 : `nukos` | `优化` | `experimental` | `tick` \
+> 自版本 : `0.6.0` \
+> values : `true`, <u>`false`</u> \
+> 需要匹配客户端 : 不需要
+
+在 [tickFreezeWhenNoPlayers](#tickfreezewhennoplayers) 通过 `tick freeze` 冻结游戏时，使用 `freeze deep` 而非普通的 `freeze`。
+
+对于普通的 freeze 和 deep freeze 的更多信息，详见 Carpet [#634](https://github.com/gnembon/fabric-carpet/pull/634)。
+
+## ignoringPlayersOnAutoTickFreeze
+
+> 本地化名称 : ignoringPlayersOnAutoTickFreeze | 自动停止 tick 应忽略的玩家 \
+> 分类 : `nukos` | `优化` | `experimental` | `tick` \
+> 自版本 : `0.6.0` \
+> values : <u><code></code></u>, `MyBot`, `*bot,*Bot` \
+> 需要匹配客户端 : 不需要
+
+在 [tickFreezeWhenNoPlayers](#tickfreezewhennoplayers) 检测在线玩家列表时，忽略在此指定的玩家。在这里指定的玩家会被永远看作未在线，即如果服务器只有在此列表中的玩家，则服务器会被认为没有玩家在线而停止 tick。
+
+每个用户名使用英文 `,` 分隔开来，也可以使用 `*` 作为通配符来匹配任意剩余内容。名称之间**不能**有空格。
+
 ## anvilItemCostRollupAlgorithm
 
 > 本地化名称 : anvilItemUseCostRollupAlgorithm | 物品的铁砧累加惩罚算法 \
