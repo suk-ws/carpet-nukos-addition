@@ -1,5 +1,7 @@
 {
 	
+	"nukos.versioning": "版本",
+	
 	"carpet.category.nukos": "nukos",
 	
 	"carpet.rule.anvilItemCostRollupAlgorithm.name": "物品的铁砧累加惩罚算法",

@@ -1,5 +1,7 @@
 {
 	
+	"nukos.versioning": "version",
+	
 	"carpet.category.nukos": "nukos",
 	
 	"carpet.rule.anvilItemCostRollupAlgorithm.name": "anvilItemUseCostRollupAlgorithm",
