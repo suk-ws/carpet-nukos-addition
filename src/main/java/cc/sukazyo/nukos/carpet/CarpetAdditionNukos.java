@@ -24,7 +24,7 @@ public class CarpetAdditionNukos implements CarpetExtension {
 	
 	public static void init () {
 		CarpetServer.manageExtension(new CarpetAdditionNukos());
-		ModCarpetNukos.LOGGER.info("Hello, Nukoland!");
+		ModCarpetNukos.LOGGER.info("Hello, Nukoland v%s!".formatted(ModCarpetNukos.VERSION));
 	}
 	
 	@Override
@@ -42,11 +42,6 @@ public class CarpetAdditionNukos implements CarpetExtension {
 	@Override
 	public void onServerLoadedWorlds (MinecraftServer server) {
 		AutoTickFreeze.onWorldInit();
-		CarpetServer.settingsManager.registerRuleObserver((source, changedRule, userInput) -> {
-			if (Objects.equals(changedRule.name(), "tickFreezeWhenNoPlayers")) {
-				AutoTickFreeze.onConfigChanged((boolean)changedRule.value());
-			}
-		});
 	}
 	
 	@Override

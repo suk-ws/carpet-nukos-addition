@@ -56,4 +56,14 @@ public class CarpetNukosSettings {
 	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, NukosCategoryKeys.TICK})
 	public static Boolean tickFreezeWhenNoPlayers = false;
 	
+	@Rule(categories = {NukosCategoryKeys.NUKOS, RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, NukosCategoryKeys.TICK})
+	public static Boolean tickFreezeWhenNoPlayersUseDeepFreeze = false;
+	
+	@Rule(
+			categories = {NukosCategoryKeys.NUKOS, RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, NukosCategoryKeys.TICK},
+			options = {"", "MyBot", "*bot,*Bot"},
+			strict = false
+	)
+	public static String ignoringPlayersOnAutoTickFreeze = "";
+	
 }

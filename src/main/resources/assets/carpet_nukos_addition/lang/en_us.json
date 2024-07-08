@@ -24,6 +24,12 @@
 	"carpet.rule.anvilCustomNameSerializer.desc": "Customize the serializer used for anvil renaming items. May available only on this mod installed on client. Only affects when using mod anvil algorithms.",
 	
 	"carpet.rule.anvilCanRepairUseIronBlock.name": "anvilCanRepairUseIronBlock",
-	"carpet.rule.anvilCanRepairUseIronBlock.desc": "Can repair a breaking anvil by right-clicking it with an iron block iron hand."
+	"carpet.rule.anvilCanRepairUseIronBlock.desc": "Can repair a breaking anvil by right-clicking it with an iron block iron hand.",
+	
+	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.name": "tickFreezeWhenNoPlayersUseDeepFreeze",
+	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.desc": "Use deep freeze for tickFreezeWhenNoPlayers.",
+	
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.name": "ignoringPlayersOnAutoTickFreeze",
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "Which users should be ignored for allow server ticking in tickFreezeWhenNoPlayers. Each username should separated by comma, or use * to capture all characters."
 	
 }

@@ -20,7 +20,11 @@ final var workshopMcMods = mavenRepository({
 
 final var proj_group = predef_proj_group
 final var proj_package = "$predef_proj_group.$predef_proj_id"
-final var proj_version = predef_proj_version
+final var proj_is_snapshot = Boolean.parseBoolean(predef_proj_is_snapshot)
+final var proj_version = [
+		predef_proj_version,
+		proj_is_snapshot ? "SNAPSHOT" : null
+].stream().filter(x -> x != 'null').reduce((x, y) -> x + '-' + y).orElseGet(() -> "0.0.0-SNAPSHOT")
 final var proj_name = predef_proj_name
 
 version = proj_version
