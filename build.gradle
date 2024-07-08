@@ -1,3 +1,5 @@
+import java.util.Optional as If
+
 plugins {
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
@@ -7,15 +9,25 @@ plugins {
 static Closure mavenRepository (@DelegatesTo(MavenArtifactRepository.class) Closure closure) { closure }
 static Action<? extends PasswordCredentials> credentials (Action<? extends PasswordCredentials> action) { action }
 
-final var workshopCredentials = credentials { it ->
-	it.username = publishMvnRepoUsername
-	it.password = publishMvnRepoPassword
+If<Action<? extends PasswordCredentials>> workshopCredentials = If.empty()
+final predef_credential_username = System.getenv('workshop_maven_credential_username')
+final predef_credential_password = System.getenv('workshop_maven_credential_password')
+if (predef_credential_username != null && predef_credential_password != null) {
+	workshopCredentials = If.of(credentials { credentials ->
+		credentials.username = predef_credential_username
+		credentials.password = predef_credential_password
+	})
+	println("Using workshop credentials.")
+} else {
+	println("Workshop credentials not set, will not be able to do maven publish.")
 }
 
+final var workshopMcModsPublishable = workshopCredentials.isPresent()
 final var workshopMcMods = mavenRepository({
 	name 'wsMcMods'
 	url "https://mvn.sukazyo.cc/mc-mods"
-	credentials workshopCredentials
+	if (workshopMcModsPublishable)
+		credentials workshopCredentials.get()
 })
 
 final var proj_group = predef_proj_group
@@ -47,7 +59,7 @@ repositories {
 loom {
 	splitEnvironmentSourceSets()
 	mods {
-		"$predef_proj_name" {
+		"$proj_name" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -130,7 +142,8 @@ publishing {
 	}
 	
 	repositories {
-		maven workshopMcMods
+		if (workshopMcModsPublishable)
+			maven workshopMcMods
 	}
 	
 }
