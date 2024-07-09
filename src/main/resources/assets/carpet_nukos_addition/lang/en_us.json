@@ -32,6 +32,9 @@
 	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.desc": "Use deep freeze for tickFreezeWhenNoPlayers.",
 	
 	"carpet.rule.ignoringPlayersOnAutoTickFreeze.name": "ignoringPlayersOnAutoTickFreeze",
-	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "Which users should be ignored for allow server ticking in tickFreezeWhenNoPlayers. Each username should separated by comma, or use * to capture all characters."
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "Which users should be ignored for allow server ticking in tickFreezeWhenNoPlayers. Each username should separated by comma, or use * to capture all characters.",
+	
+	"carpet.rule.ignoringPlayersOnSleeping.name": "ignoringPlayersOnSleeping",
+	"carpet.rule.ignoringPlayersOnSleeping.desc": "Which users should be ignored when server calculating how many player is sleeping, the ignored user will not be calculated to the total and the sleeping users."
 	
 }

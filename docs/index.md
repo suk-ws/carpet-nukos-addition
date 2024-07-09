@@ -37,7 +37,7 @@ Legend: \
 | Auto Freeze Ticking When No Players       | ✅ 0.1.0 |
 | Auto Freeze Ticking Use Deep Freeze       | ✅ 0.6.0 |
 | Ignore Players in Auto Tick Freeze        | ✅ 0.6.0 |
-| Ignore Players when Sleeping              | ❌       |
+| Ignore Players when Sleeping              | ✅ 0.6.0 |
 | Tick Status Sync Patch for Carpet Clients | ✅ 0.1.1 |
 | Display Pet Health                        | ❌       |
 | Pet Friendly Fire Protection              | ❌       |

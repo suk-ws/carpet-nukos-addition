@@ -25,6 +25,7 @@ public class CarpetNukosSettings {
 			validators = AnvilAlgorithms.Validator.class
 	)
 	public static String anvilAlgorithm = "vanilla";
+	
 	public static AnvilAlgorithm getCurrentAnvilAlgorithm () {
 		return AnvilAlgorithms.getFromName(CarpetNukosSettings.anvilAlgorithm);
 	}
@@ -65,5 +66,12 @@ public class CarpetNukosSettings {
 			strict = false
 	)
 	public static String ignoringPlayersOnAutoTickFreeze = "";
+	
+	@Rule(
+			categories = {NukosCategoryKeys.NUKOS, RuleCategory.SURVIVAL, NukosCategoryKeys.TICK},
+			options = {"", "MyBot", "*bot,*Bot"},
+			strict = false
+	)
+	public static String ignoringPlayersOnSleeping = "";
 	
 }

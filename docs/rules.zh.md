@@ -38,6 +38,22 @@
 
 每个用户名使用英文 `,` 分隔开来，也可以使用 `*` 作为通配符来匹配任意剩余内容。名称之间**不能**有空格。
 
+## ignoringPlayersOnSleeping
+
+> 本地化名称 : ignoringPlayersOnSleeping | 玩家睡觉计算应忽略的玩家 \
+> 分类 : `nukos` | `生存` | `tick` \
+> 自版本 : `0.6.0` \
+> values : <u><code></code></u>, `MyBot`, `*bot,*Bot` \
+> 需要匹配客户端 : 不需要
+
+设置哪些玩家应该在服务器统计正在睡觉/未在睡觉的玩家时应被忽略。设置为被忽略的玩家将不会在统计睡觉状态时被统计，就像是它们处在观察者模式当中一样。
+
+这个设置的目的是使得挂机用的玩家不会影响普通玩家的睡觉状态，也可以用于让处于创造模式的管理员不会影响普通生存玩家的睡觉状态。
+
+如果将此条目设置为空的话，将不会对游戏机制做出修改，以保证与其它更改了睡觉机制的 mod 的兼容性。
+
+和 [ignoringPlayersOnAutoTickFreeze](#ignoringplayersonautotickfreeze) 相同, 每个用户名使用英文 `,` 分隔开来，也可以使用 `*` 作为通配符来匹配任意剩余内容。名称之间**不能**有空格。
+
 ## anvilItemCostRollupAlgorithm
 
 > 本地化名称 : anvilItemUseCostRollupAlgorithm | 物品的铁砧累加惩罚算法 \

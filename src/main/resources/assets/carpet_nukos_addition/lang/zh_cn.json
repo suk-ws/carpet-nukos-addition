@@ -32,6 +32,9 @@
 	"carpet.rule.tickFreezeWhenNoPlayersUseDeepFreeze.desc": "为规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 使用深度冻结功能。",
 	
 	"carpet.rule.ignoringPlayersOnAutoTickFreeze.name": "自动停止 tick 应忽略的玩家",
-	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "在规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 里应忽略哪些玩家的在线。每个玩家名称应使用,区分，或者使用 * 来进行通配。"
+	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "在规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 里应忽略哪些玩家的在线。每个玩家名称应使用,区分，或者使用 * 来进行通配。",
+	
+	"carpet.rule.ignoringPlayersOnSleeping.name": "玩家睡觉计算应忽略的玩家",
+	"carpet.rule.ignoringPlayersOnSleeping.desc": "设置哪些玩家应该在计算已睡觉/未睡觉玩家时被忽略。被设置忽略的玩家将既不会被计算在已睡觉玩家中也不会被计算在未睡觉玩家中。"
 	
 }

@@ -5,7 +5,8 @@
 	"mixins": [
 		"MixinAnvilBlock",
 		"MixinAnvilScreenHandler",
-		"MixinCarpetSettingsManager"
+		"MixinCarpetSettingsManager",
+		"MixinSleepManager"
 	],
 	"injectors": {
 		"defaultRequire": 1
