@@ -36,7 +36,7 @@ final var proj_is_snapshot = Boolean.parseBoolean(predef_proj_is_snapshot)
 final var proj_version = [
 		predef_proj_version,
 		proj_is_snapshot ? "SNAPSHOT" : null
-].stream().filter(x -> x != 'null').reduce((x, y) -> x + '-' + y).orElseGet(() -> "0.0.0-SNAPSHOT")
+].stream().filter(x -> x != null && !x.isBlank()).reduce((x, y) -> x + '-' + y).orElseGet(() -> "0.0.0-SNAPSHOT")
 final var proj_name = predef_proj_name
 
 version = proj_version
