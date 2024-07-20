@@ -7,6 +7,7 @@ import cc.sukazyo.nukos.carpet.CarpetAdditionNukos;
 import cc.sukazyo.nukos.carpet.CarpetNukosSettings;
 import cc.sukazyo.nukos.carpet.ModCarpetNukos;
 import cc.sukazyo.nukos.carpet.utils.PlayerNameMatcher;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Arrays;
@@ -15,6 +16,26 @@ import java.util.Set;
 public class AutoTickFreeze {
 	
 	public static ServerTickRateManager trm;
+	
+	private static class ActionExecutor implements AutoTickFreezeEvents.TickFreezing, AutoTickFreezeEvents.TickUnfreezing {
+		
+		@Override
+		public void onTickFreezing (MinecraftServer server, boolean useDeepFreeze) {
+			trm.setFrozenState(true, useDeepFreeze);
+			if (useDeepFreeze)
+				ModCarpetNukos.LOGGER.info("Currently no player is online, server will DEEP FREEZE world updates.");
+			else ModCarpetNukos.LOGGER.info("Currently no player is online, server will freeze world updates.");
+			ModCarpetNukos.LOGGER.info("paused ticks at tick {}", CarpetAdditionNukos.SERVER.getOverworld().getTime());
+		}
+		
+		@Override
+		public void onTickUnfreezing (MinecraftServer server) {
+			ModCarpetNukos.LOGGER.info("Currently players are online, server will continue ticks.");
+			trm.setFrozenState(false, false);
+			ModCarpetNukos.LOGGER.info("starting ticks from tick {}", CarpetAdditionNukos.SERVER.getOverworld().getTime());
+		}
+		
+	} private static final ActionExecutor actionExecutor = new ActionExecutor();
 	
 	private static final Set<String> SETTINGS_NAMES = Set.of(
 			"tickFreezeWhenNoPlayers",
@@ -25,6 +46,12 @@ public class AutoTickFreeze {
 	public static void onWorldInit () {
 		
 		trm = ((MinecraftServerInterface)CarpetAdditionNukos.SERVER).getTickRateManager();
+		AutoTickFreezeEvents.TICK_FREEZING.register(actionExecutor);
+		AutoTickFreezeEvents.TICK_UNFREEZING.register(actionExecutor);
+		
+		final var runScriptsCallback = new TickFreezingRunScripts();
+		AutoTickFreezeEvents.TICK_FREEZING.register(runScriptsCallback);
+		AutoTickFreezeEvents.TICK_UNFREEZING.register(runScriptsCallback);
 		
 		CarpetServer.settingsManager.registerRuleObserver((source, changedRule, userInput) -> {
 			if (SETTINGS_NAMES.contains(changedRule.name())) {
@@ -78,22 +105,17 @@ public class AutoTickFreeze {
 	}
 	
 	private static void tickFreeze () {
+		final var isUseDeepFreeze = CarpetNukosSettings.tickFreezeWhenNoPlayersUseDeepFreeze;
 		if (trm.gameIsPaused()) {
-			if (trm.deeplyFrozen() && CarpetNukosSettings.tickFreezeWhenNoPlayersUseDeepFreeze) return;
-			if (!trm.deeplyFrozen() && !CarpetNukosSettings.tickFreezeWhenNoPlayersUseDeepFreeze) return;
+			if (trm.deeplyFrozen() && isUseDeepFreeze) return;
+			if (!trm.deeplyFrozen() && !isUseDeepFreeze) return;
 		}
-		trm.setFrozenState(true, CarpetNukosSettings.tickFreezeWhenNoPlayersUseDeepFreeze);
-		if (CarpetNukosSettings.tickFreezeWhenNoPlayersUseDeepFreeze)
-			ModCarpetNukos.LOGGER.info("Currently no player is online, server will DEEP FREEZE world updates.");
-		else ModCarpetNukos.LOGGER.info("Currently no player is online, server will freeze world updates.");
-		ModCarpetNukos.LOGGER.info("paused ticks at tick {}", CarpetAdditionNukos.SERVER.getOverworld().getTime());
+		AutoTickFreezeEvents.TICK_FREEZING.invoker().onTickFreezing(CarpetAdditionNukos.SERVER, isUseDeepFreeze);
 	}
 	
 	private static void tickContinue () {
 		if (!trm.gameIsPaused()) return;
-		ModCarpetNukos.LOGGER.info("Currently players are online, server will continue ticks.");
-		ModCarpetNukos.LOGGER.info("starting ticks from tick {}", CarpetAdditionNukos.SERVER.getOverworld().getTime());
-		trm.setFrozenState(false, false);
+		AutoTickFreezeEvents.TICK_UNFREEZING.invoker().onTickUnfreezing(CarpetAdditionNukos.SERVER);
 	}
 	
 }

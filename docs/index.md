@@ -35,6 +35,7 @@ Legend: \
 | Iron Block Repair for Anvils              | ✅ 0.5.0 |
 | Anvil-Related Client Patches              | ✅ 0.4.2 |
 | Auto Freeze Ticking When No Players       | ✅ 0.1.0 |
+| Auto Freeze Ticking Related Scripts       | ✅ 0.7.0 |
 | Auto Freeze Ticking Use Deep Freeze       | ✅ 0.6.0 |
 | Ignore Players in Auto Tick Freeze        | ✅ 0.6.0 |
 | Ignore Players when Sleeping              | ✅ 0.6.0 |

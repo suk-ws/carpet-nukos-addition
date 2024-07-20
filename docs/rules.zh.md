@@ -14,6 +14,8 @@
 
 只会在 Dedicated Server （专用服务器，即通过 server.jar 等启动的没有自带客户端的独立服务器） 环境下生效。在单人游戏和开放局域网联机的单人游戏里不会生效。
 
+同时，如果在配置文件中存在 `config/carpet_nukos_addition/on-tick-freeze.mcfunction` 或 `config/carpet_nukos_addition/on-tick-unfreeze.mcfunction` 两个文件，则在暂停/继续游戏的时候将会在暂停/继续游戏后**逐行**执行这两个文件，以便于进行一些自定义的对游戏的控制。（目前的实现仅将文件中的每一行作为一个命令，在名为 `Nukos-Automatics` 的虚拟控制台上执行，并未实现完整的 MC Function API）
+
 ## tickFreezeWhenNoPlayersUseDeepFreeze
 
 > 本地化名称 : tickFreezeWhenNoPlayersUseDeepFreeze | 自动停止 tick 使用深度冻结 \
