@@ -9,7 +9,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class CarpetAdditionNukos implements CarpetExtension {
 	
@@ -17,6 +16,8 @@ public class CarpetAdditionNukos implements CarpetExtension {
 		public static final String NUKOS = "nukos";
 		public static final String TICK = "tick";
 		public static final String ANVIL = "anvil";
+		public static final String ENTITY = "entity";
+		public static final String PETS = "pets";
 	}
 	
 	public static MinecraftServer SERVER;
@@ -25,6 +26,7 @@ public class CarpetAdditionNukos implements CarpetExtension {
 	public static void init () {
 		CarpetServer.manageExtension(new CarpetAdditionNukos());
 		ModCarpetNukos.LOGGER.info("Hello, Nukoland v%s!".formatted(ModCarpetNukos.VERSION));
+		ModCarpetNukos.LOGGER.debug("Nukoland in debugging mode!");
 	}
 	
 	@Override

@@ -57,13 +57,18 @@ repositories {
 }
 
 loom {
+	
 	splitEnvironmentSourceSets()
+	
 	mods {
 		"$proj_name" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
 	}
+	
+	log4jConfigs.from file("log4j.xml")
+	
 }
 
 remapJar {

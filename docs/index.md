@@ -41,7 +41,7 @@ Legend: \
 | Ignore Players when Sleeping              | ✅ 0.6.0 |
 | Tick Status Sync Patch for Carpet Clients | ✅ 0.1.1 |
 | Display Pet Health                        | ❌       |
-| Pet Friendly Fire Protection              | ❌       |
+| Pet Friendly Fire Protection              | ✅ 0.7.0 |
 | Pet Owner Transferable                    | ❌       |
 
 ## Changelogs

@@ -35,6 +35,12 @@
 	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "在规则 无玩家时停止Tick(tickFreezeWhenNoPlayers) 里应忽略哪些玩家的在线。每个玩家名称应使用,区分，或者使用 * 来进行通配。",
 	
 	"carpet.rule.ignoringPlayersOnSleeping.name": "玩家睡觉计算应忽略的玩家",
-	"carpet.rule.ignoringPlayersOnSleeping.desc": "设置哪些玩家应该在计算已睡觉/未睡觉玩家时被忽略。被设置忽略的玩家将既不会被计算在已睡觉玩家中也不会被计算在未睡觉玩家中。"
+	"carpet.rule.ignoringPlayersOnSleeping.desc": "设置哪些玩家应该在计算已睡觉/未睡觉玩家时被忽略。被设置忽略的玩家将既不会被计算在已睡觉玩家中也不会被计算在未睡觉玩家中。",
+	
+	"carpet.rule.animalDamageImmune.name": "动物伤害保护",
+	"carpet.rule.animalDamageImmune.desc": "定义哪些动物应该受到伤害保护。可以设置多个预设的组，或者实体 id，每个之间用逗号分隔。",
+	
+	"carpet_nukos_add.pets.damage_protected": "这只 %s 受保护，潜行以绕过保护。",
+	"carpet_nukos_add.pets.damage_notify": "你的 %s 正遭受攻击！"
 	
 }

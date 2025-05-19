@@ -6,7 +6,10 @@ import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithm;
 import cc.sukazyo.nukos.carpet.anvils.AnvilAlgorithms;
 import cc.sukazyo.nukos.carpet.anvils.AnvilItemCostRollupAlgorithm;
 import cc.sukazyo.nukos.carpet.CarpetAdditionNukos.NukosCategoryKeys;
+import cc.sukazyo.nukos.carpet.pets.protect.*;
 import cc.sukazyo.nukos.carpet.text.anvil.MyAnvilTextHelpers;
+
+import static cc.sukazyo.nukos.carpet.ModCarpetNukos.LOGGER;
 
 public class CarpetNukosSettings {
 	
@@ -73,5 +76,21 @@ public class CarpetNukosSettings {
 			strict = false
 	)
 	public static String ignoringPlayersOnSleeping = "";
+	
+	@Rule(
+			categories = {NukosCategoryKeys.NUKOS, NukosCategoryKeys.ENTITY, NukosCategoryKeys.PETS},
+			options = {"", "pets/owned", "pets/owned,baby/animal", "pets/owned,baby/animal,villages"},
+			strict = false,
+			validators = PetsProtections.ProtectionConfigValidator.class
+	)
+	public static String animalDamageImmune = "";
+	public static PetProtectionChecker[] getAnimalDamageImmuneConfigs () {
+		try {
+			return PetsProtections.protectionsFromConfig(animalDamageImmune);
+		} catch (PetProtectionBuilder.IllegalConfigException ignored) {
+			LOGGER.warn("failed to load animal friendly fire configs!");
+			return new PetProtectionChecker[0];
+		}
+	}
 	
 }

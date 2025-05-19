@@ -35,6 +35,12 @@
 	"carpet.rule.ignoringPlayersOnAutoTickFreeze.desc": "Which users should be ignored for allow server ticking in tickFreezeWhenNoPlayers. Each username should separated by comma, or use * to capture all characters.",
 	
 	"carpet.rule.ignoringPlayersOnSleeping.name": "ignoringPlayersOnSleeping",
-	"carpet.rule.ignoringPlayersOnSleeping.desc": "Which users should be ignored when server calculating how many player is sleeping, the ignored user will not be calculated to the total and the sleeping users."
+	"carpet.rule.ignoringPlayersOnSleeping.desc": "Which users should be ignored when server calculating how many player is sleeping, the ignored user will not be calculated to the total and the sleeping users.",
+	
+	"carpet.rule.animalDamageImmune.name": "animalDamageImmune",
+	"carpet.rule.animalDamageImmune.desc": "Which animals should be protected from play attacks. Multiple predefined groups or entity id can be set here, separated by comma.",
+	
+	"carpet_nukos_add.pets.damage_protected": "The %s is protected. Crouch to bypass.",
+	"carpet_nukos_add.pets.damage_notify": "Your %s is taking damage!"
 	
 }
