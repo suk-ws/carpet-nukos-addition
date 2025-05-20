@@ -54,7 +54,7 @@ public class PetsProtections {
 				if (player instanceof ServerPlayerEntity serverPlayer) {
 					serverPlayer.sendMessage(
 							Text.translatable(
-									"carpet_nukos_add.pets.damage_protected",
+									"carpet_nukos_add.pets.damage_protected.message",
 									entity.getDisplayName()
 							), true);
 				}
@@ -69,7 +69,7 @@ public class PetsProtections {
 	
 	public static PetProtectionChecker[] protectionsFromConfig (String config) throws PetProtectionBuilder.IllegalConfigException {
 		
-		if (config.isEmpty()) return new PetProtectionChecker[0];
+		if (config.isEmpty() || config.equals("none")) return new PetProtectionChecker[0];
 		
 		final List<PetProtectionChecker> checkers = new ArrayList<>();
 		final String[] configs = config.split(",");

@@ -40,7 +40,13 @@
 	"carpet.rule.animalDamageImmune.name": "animalDamageImmune",
 	"carpet.rule.animalDamageImmune.desc": "Which animals should be protected from play attacks. Multiple predefined groups or entity id can be set here, separated by comma.",
 	
-	"carpet_nukos_add.pets.damage_protected": "The %s is protected. Crouch to bypass.",
-	"carpet_nukos_add.pets.damage_notify": "Your %s is taking damage!"
+	"carpet_nukos_add.pets.damage_protected.message": "The %s is protected. Crouch to bypass.",
+	
+	"carpet.rule.petsNoAccidentBreeding.name": "petsNoAccidentBreeding",
+	"carpet.rule.petsNoAccidentBreeding.desc": "Prevent breeding pets when player is feeding to heal pets. Crouch to bypass and breeding the pet.",
+	
+	"carpet_nukos_add.pets.full_health.message": "Your %s is always full health! Crouch and feed to breeding.",
+	
+	"carpet_nukos_add.pets.damage_notify.message": "Your %s is taking damage!"
 	
 }

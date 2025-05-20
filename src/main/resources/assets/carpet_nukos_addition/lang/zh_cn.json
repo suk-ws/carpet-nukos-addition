@@ -41,6 +41,12 @@
 	"carpet.rule.animalDamageImmune.desc": "定义哪些动物应该受到伤害保护。可以设置多个预设的组，或者实体 id，每个之间用逗号分隔。",
 	
 	"carpet_nukos_add.pets.damage_protected": "这只 %s 受保护，潜行以绕过保护。",
-	"carpet_nukos_add.pets.damage_notify": "你的 %s 正遭受攻击！"
+	
+	"carpet.rule.petsNoAccidentBreeding.name": "宠物防止误繁殖",
+	"carpet.rule.petsNoAccidentBreeding.desc": "防止玩家在喂食治疗宠物时误让宠物进入繁殖状态。潜行喂食以绕过并繁殖宠物。",
+	
+	"carpet_nukos_add.pets.full_health.message": "你的 %s 生命值已满。潜行以繁殖。",
+	
+	"carpet_nukos_add.pets.damage_notify.message": "你的 %s 正遭受攻击！"
 	
 }

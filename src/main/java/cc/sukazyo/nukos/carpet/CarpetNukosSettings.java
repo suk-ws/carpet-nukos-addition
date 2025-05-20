@@ -79,7 +79,7 @@ public class CarpetNukosSettings {
 	
 	@Rule(
 			categories = {NukosCategoryKeys.NUKOS, NukosCategoryKeys.ENTITY, NukosCategoryKeys.PETS},
-			options = {"", "pets/owned", "pets/owned,baby/animal", "pets/owned,baby/animal,villages"},
+			options = {"none", "pets/owned", "pets/team,baby/animal", "pets,baby/animal,villages"},
 			strict = false,
 			validators = PetsProtections.ProtectionConfigValidator.class
 	)
@@ -92,5 +92,11 @@ public class CarpetNukosSettings {
 			return new PetProtectionChecker[0];
 		}
 	}
+	
+	@Rule(
+			categories = {NukosCategoryKeys.NUKOS, NukosCategoryKeys.ENTITY, NukosCategoryKeys.PETS},
+			options = {"none", "cat"}
+	)
+	public static String petsNoAccidentBreeding = "none";
 	
 }

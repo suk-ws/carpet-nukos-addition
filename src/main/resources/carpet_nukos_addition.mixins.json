@@ -3,11 +3,12 @@
 	"package": "cc.sukazyo.nukos.carpet.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"MixinAnimalEntity",
 		"MixinAnvilBlock",
 		"MixinAnvilScreenHandler",
 		"MixinCarpetSettingsManager",
-		"MixinSleepManager",
-		"MixinLivingEntity"
+		"MixinLivingEntity",
+		"MixinSleepManager"
 	],
 	"injectors": {
 		"defaultRequire": 1
