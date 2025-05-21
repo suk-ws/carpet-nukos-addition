@@ -42,6 +42,7 @@ Legend: \
 | Tick Status Sync Patch for Carpet Clients | ✅ 0.1.1 |
 | Display Pet Health                        | ❌       |
 | Pet Friendly Fire Protection              | ✅ 0.7.0 |
+| Pets No Accident Bleeding                 | ✅ 0.7.0 |
 | Pet Owner Transferable                    | ❌       |
 
 ## Changelogs

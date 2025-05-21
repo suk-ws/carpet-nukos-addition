@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Language;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -29,6 +30,8 @@ public class PetsProtections {
 	}
 	
 	public static void onLivingEntityHurts (LivingEntity entity, DamageSource source, float damage, CallbackInfoReturnable<Boolean> cir) {
+		
+		if (entity.getWorld().isClient()) return;
 		
 		if (!(source.getAttacker() instanceof PlayerEntity player)) {
 			return;
@@ -53,8 +56,9 @@ public class PetsProtections {
 				player.setAttacker(null);
 				if (player instanceof ServerPlayerEntity serverPlayer) {
 					serverPlayer.sendMessage(
-							Text.translatable(
+							Text.translatableWithFallback(
 									"carpet_nukos_add.pets.damage_protected.message",
+									Language.getInstance().get("carpet_nukos_add.pets.damage_protected.message"),
 									entity.getDisplayName()
 							), true);
 				}

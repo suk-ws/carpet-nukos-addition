@@ -45,7 +45,7 @@
 	"carpet.rule.petsNoAccidentBreeding.name": "petsNoAccidentBreeding",
 	"carpet.rule.petsNoAccidentBreeding.desc": "Prevent breeding pets when player is feeding to heal pets. Crouch to bypass and breeding the pet.",
 	
-	"carpet_nukos_add.pets.full_health.message": "Your %s is always full health! Crouch and feed to breeding.",
+	"carpet_nukos_add.pets.full_health.message": "Your %s is already full health! Crouch and feed to breeding.",
 	
 	"carpet_nukos_add.pets.damage_notify.message": "Your %s is taking damage!"
 	
